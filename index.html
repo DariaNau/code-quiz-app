@@ -1,0 +1,40 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="">
+</head>
+<body>
+    
+<!-- Start Quiz -->
+    <div id="start">Start Quiz!</div>
+
+<!-- Questions -->
+<div id="quiz" class="container" style="display: none;">
+    <div id="question"><p>Question</p></div>
+    <div id="highScores"><p>View highscores</p></div>
+    <div id="timer">
+        <div id="count"></div>
+    </div>
+
+    <div id="choices">
+        <div class="choice" id="1" onclick="checkAnswer('1')">1.</div>
+        <div class="choice" id="2" onclick="checkAnswer('2')">1.</div>
+        <div class="choice" id="3" onclick="checkAnswer('3')">1.</div>
+        <div class="choice" id="4" onclick="checkAnswer('4')">1.</div>
+    </div>
+</div>
+
+<!-- Score -->
+<div id="scoreContainer" class="container" style="display: none;"><p>All done! Your score is <span>%</span></p>
+    <form>
+        <input type="Enter initials:" class="form-control" type="text">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+<script src="script.js"></script>    
+</body>
+</html>
