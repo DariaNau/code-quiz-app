@@ -29,16 +29,22 @@ var questions = [
   ];
 
   $(document).ready(function() {
-
+      $('.start').click(function(e){
+          e.preventDefault();
+          $('.start').hide();
+          $('.quiz').show();
+          showQuestion();
+      });
 
   });
-
-
-  function startQuiz (){
-    
-}
-
-function showQuestion (){
+  
+  function showQuestion (){
+    var question = questions[currentQuestion];
+    $('.quiz h2').text(question.title);
+    $('.quiz ol').html('');
+    for (var i=0; i<question.choices.length; i++){
+        $('.quiz ol').append(`<li id="${i}">${question.choices[i]}</li>`);
+    }
     
 }
 
