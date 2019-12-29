@@ -1,0 +1,9 @@
+.quiz, .scoreContainer{
+    display: none;
+}
+
+.card {
+    margin-top: 10% !important;
+    background-color:lightgrey;
+}
+
