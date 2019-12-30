@@ -7,3 +7,9 @@
     background-color:lightgrey;
 }
 
+li:hover {
+    background-color:purple;
+    max-width: fit-content;
+    color: seashell;
+    cursor: pointer;
+  }
