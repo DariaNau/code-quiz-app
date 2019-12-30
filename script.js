@@ -1,3 +1,5 @@
+$(document).ready(function() {
+
 var currentQuestion = 0;
 var score = 0;
 var questions = [
@@ -28,33 +30,45 @@ var questions = [
     },
   ];
 
-  $(document).ready(function() {
-      $('.start').click(function(e){
+    $('.start').click(function(e){
           e.preventDefault();
           $('.start').hide();
           $('.quiz').show();
           showQuestion();
       });
 
-  });
-  
-  function showQuestion (){
-    var question = questions[currentQuestion];
-    $('.quiz h2').text(question.title);
-    $('.quiz ol').html('');
-    for (var i=0; i<question.choices.length; i++){
-        $('.quiz ol').append(`<li id="${i}">${question.choices[i]}</li>`);
+      //clicking on the start quiz button hides the start page and shows the quiz page while firing the showQuestion() function
+      
+      function showQuestion(){
+        choices = questions[currentQuestion].choices;
+        var question = questions[currentQuestion].title;
+        $('.quiz h2').text(question);
+        for (var i=0; i<parseInt(choices.length); i++){
+        var show = questions[currentQuestion].choices[i];
+        $('.quiz ol').append(`<li id="${i}">${show}</li>`);
     }
-    
-}
 
-function checkAnswer (){
+    $('li').click(function () {
+    var guess = $('li').attr('id');
+    console.log(guess);
+
+    });
+
+}
+    
+
+
+function checkAnswer(guess) {
 
 }
 
 function showScore (){
     
 }
+
+
+
+});
 
 
 
