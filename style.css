@@ -17,3 +17,8 @@ li:hover {
     color: seashell;
     cursor: pointer;
   }
+  .card{
+      background: url("https://www.toptal.com/designers/subtlepatterns/patterns/white_wall2.png");
+      margin-top: 7% !important;
+  }
+
