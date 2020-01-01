@@ -51,8 +51,6 @@ var questions = [
     }}, 1000);
 }
 
-
-
 //clicking on the start quiz button hides the start page and shows the quiz page while firing the showQuestion() function
       
     function showQuestion(){
@@ -71,16 +69,18 @@ var questions = [
     var answer = questions[currentQuestion].answer;
 
     if (answer === guess) {
-    $('cite').fadeIn(100);
-    $('cite').html('<h4>Correct!<h4>').fadeOut(600);
+    $('.feedback').fadeIn(100);
+    $('.feedback').html('<h4>Correct!<h4>').fadeOut(600);
+    $('.feedback').css({"color":"lightgrey", "text-align":"center","border-top":"lightgrey", "border-top-width":"1px", "border-top-style":"solid"});
     currentQuestion ++;
     showQuestion();
 
  // highlight timer in css later! 
- 
+
     } else{
-    $('cite').fadeIn(100);
-    $('cite').html('<h4>Wrong!<h4>').fadeOut(600);
+    $('.feedback').fadeIn(100);
+    $('.feedback').html('<h4>Wrong!<h4>').fadeOut(800);
+    $('.feedback').css({"color":"lightgrey", "text-align":"center","border-top":"lightgrey", "border-top-width":"1px", "border-top-style":"solid"});
     secondsLeft = secondsLeft-10;
     currentQuestion ++;
     showQuestion();
@@ -88,15 +88,9 @@ var questions = [
 });
 
 
-// function scores() {
-//     timeEl.textContent = " ";
-  
-//     var imgEl = document.createElement("img");
-  
-//     imgEl.setAttribute("src", "images/image_1.jpg");
-//     mainEl.appendChild(imgEl);
-  
-//   }
+
+
+
 
 
 
