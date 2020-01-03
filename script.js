@@ -39,12 +39,12 @@ var questions = [
     });
 
     function setTimer() {
-        var timerInterval = setInterval(function () {
+        var xInterval = setInterval(function () {
         $("#timer").html(secondsLeft);
         secondsLeft--;
-            if (secondsLeft <= 0) {
-                clearInterval(timerInterval);
-                showScore();
+            if (secondsLeft < 0) {
+                clearInterval(xInterval);
+                TimeUp();
             }
         }, 1000);
     }
@@ -108,6 +108,12 @@ var questions = [
             $(".quiz").hide();
             $(".scoreContainer").show();
         }
+    }
+
+    function TimeUp () {
+        $("#timer").text('expired!');
+        $(".quiz").hide();
+        $(".scoreContainer").show();
     }
 
 
