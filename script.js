@@ -28,70 +28,99 @@ var questions = [
     },
   ];
 
-  var secondsLeft = (questions.length) * 15;
+  var secondsLeft = questions.length * 15;
 
-  $(document).ready(function() {
+    $(".start").click(function (e) {
+        e.preventDefault();
+        setTimer();
+        $(".start").hide();
+        $(".quiz").show();
+        showQuestion();
+    });
 
-    $('.start').click(function(e){
-          e.preventDefault();
-          setTimer();
-          $('.start').hide();
-          $('.quiz').show();
-          showQuestion();
-      });
-
-      function setTimer() {
-          
-    var timerInterval = setInterval(function() {
-    secondsLeft--;
-    $('#timer').html(secondsLeft);
-    if(secondsLeft === 0) {
-      clearInterval(timerInterval);
-      scores();
-    }}, 1000);
-}
-
-//clicking on the start quiz button hides the start page and shows the quiz page while firing the showQuestion() function
-      
-    function showQuestion(){
-    var choices = questions[currentQuestion].choices;
-    var question = questions[currentQuestion].title;
-    $('.quiz h2').text(question);
-    $('.quiz ol').html('');
-    for (var i=0; i<parseInt(choices.length); i++){
-    var show = questions[currentQuestion].choices[i];
-    $('.quiz ol').append(`<li class="button-select" id="${i}">${show}</li>`);
+    function setTimer() {
+        var timerInterval = setInterval(function () {
+        $("#timer").html(secondsLeft);
+        secondsLeft--;
+            if (secondsLeft <= 0) {
+                clearInterval(timerInterval);
+                showScore();
+            }
+        }, 1000);
     }
 
-    $("li").click(function() {
-    var guessid = $(this).attr('id');
-    var guess = questions[currentQuestion].choices[guessid];
-    var answer = questions[currentQuestion].answer;
+    //clicking on the start quiz button hides the start page and shows the quiz page while firing the showQuestion() function
 
-    if (answer === guess) {
-    $('.feedback').fadeIn(100);
-    $('.feedback').html('<h4>Correct!<h4>').fadeOut(600);
-    $('.feedback').css({"color":"lightgrey", "text-align":"center","border-top":"lightgrey", "border-top-width":"1px", "border-top-style":"solid"});
-    currentQuestion ++;
-    showQuestion();
+    function showQuestion() {
+        var choices = questions[currentQuestion].choices;
+        var question = questions[currentQuestion].title;
+        $(".quiz h2").text(question);
+        $(".quiz ol").html("");
+        for (var i = 0; i < parseInt(choices.length); i++) {
+            var show = questions[currentQuestion].choices[i];
+            $(".quiz ol").append(`<li class="button-select" id="${i}">${show}</li>`);
+        }
+        
+    $("li").click(function () {
+        var guessid = $(this).attr('id');
+        var guess = questions[currentQuestion].choices[guessid];
+        var answer = questions[currentQuestion].answer;
 
- // highlight timer in css later! 
+        if (answer === guess) {
+            $(".feedback").fadeIn(200);
+            $(".feedback")
+                .html("<h4>Correct!<h4>").fadeOut(900);
+            $(".feedback").css({
+                color: "lightgrey",
+                "text-align": "center",
+                "border-top": "lightgrey",
+                "border-top-width": "1px",
+                "border-top-style": "solid"
+            });
+            currentQuestion++;
+            showScore();
+  
 
-    } else{
-    $('.feedback').fadeIn(100);
-    $('.feedback').html('<h4>Wrong!<h4>').fadeOut(800);
-    $('.feedback').css({"color":"lightgrey", "text-align":"center","border-top":"lightgrey", "border-top-width":"1px", "border-top-style":"solid"});
-    secondsLeft = secondsLeft-10;
-    currentQuestion ++;
-    showQuestion();
+        } else {
+            $(".feedback").fadeIn(200);
+            $(".feedback")
+                .html("<h4>Wrong!<h4>").fadeOut(900);
+            $(".feedback").css({
+                color: "grey",
+                "text-align": "center",
+                "border-top": "grey",
+                "border-top-width": "1px",
+                "border-top-style": "solid"
+            });
+            secondsLeft = secondsLeft - 10;
+            currentQuestion++;
+            showScore();
+      
+        }
+    });
 }
-});
+
+    function showScore() {
+        if (currentQuestion < questions.length) {
+            showQuestion();
+        } else {
+            $("#timer").remove();
+            $(".quiz").hide();
+            $(".scoreContainer").show();
+        }
+    }
 
 
 
 
 
 
+      
 
 
-}});
+
+
+
+
+      
+    
