@@ -74,18 +74,14 @@ function showQuestion() {
         "border-top-width": "1px",
         "border-top-style": "solid"
       });
-      timePenalty();
+
+// for each wrong guess timer reduces by 10 seconds
+
+      secondsLeft = secondsLeft - 10;
       currentQuestion++;
       showScore();
     }
   });
-}
-
-// for each wrong guess timer reduces by 10 seconds
-
-function timePenalty() {
-  secondsLeft = secondsLeft -= 10;
-  score = secondsLeft;
 }
 
 // after all questions are answered or the time is up running showScore and timeUp functions... ->
@@ -115,19 +111,21 @@ function timeUp() {
 //Local storage functions start with on-click #submit-initials button
 
 $("#submit-initials").click(function() {
-  initialsInput.value = "";
+  initialsInput.innerHTML = "";
   saveScores();
   showScores();
   loadScores();
+  highScores();
+  // reload();
 });
 
 function saveScores() {
   var scoreName = initialsInput.val();
-  var highScores = scoreName + " : " + score;
+  var highScores = scoreName + " : " + scoreNumber;
   initialsArray.push(highScores);
-  initialsInput.value = "";
   var stringifyListOfItems = JSON.stringify(initialsArray);
   localStorage.setItem("listOfItems", stringifyListOfItems);
+  initialsInput.innerHTML = "";
 }
 
 function showScores() {
@@ -146,4 +144,18 @@ function loadScores() {
   }
 }
 
-      
+
+
+
+function highScores() {
+
+$(".initialsArray").empty();
+
+}
+
+$("#highscores").append('<button type="button" class="btn btn-info" id= "clear" style= "float:left;">Clear High Scores</button><button type="button" class="btn btn-info" id= "restart" style= "float:right;">Restart</button>');
+
+
+
+
+
