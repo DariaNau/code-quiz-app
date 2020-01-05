@@ -35,10 +35,10 @@ function showQuestion() {
   var choices = questions[currentQuestion].choices;
   var question = questions[currentQuestion].title;
   $(".quiz h2").text(question);
-  $(".quiz ol").html("");
+  $(".quiz ul").html("");
   for (var i = 0; i < parseInt(choices.length); i++) {
     var show = questions[currentQuestion].choices[i];
-    $(".quiz ol").append(`<li class="button-select" id="${i}">${show}</li>`);
+    $(".quiz ul").append(`<li class="button-select" id="${i}">${show}</li>`);
   }
 
 // comparing user's guests with correct answer with on-click if/else statement. Feedback is appended and styled.
@@ -126,8 +126,6 @@ function saveScores() {
   localStorage.setItem("listOfItems", stringifyListOfItems);
 }
 
-
-
 function loadScores() {
   var savedScores = localStorage.getItem("listOfItems");
   var allScores = JSON.parse(savedScores);
@@ -155,16 +153,13 @@ function showScores() {
   }
 }
 
-// $("#restart").click(function () {
-//   location.reload();
-// });
+$("#go-back").click(function () {
+  location.reload();
+});
 
-// $("#clear").on("click", function () {
-//   highScores = [];
-//   storeScores();
-//   renderScores();
-// });
-// renderScores();
+$("#clear").click(function () {
+  $("#scoreList").empty(); 
+});
 
 
 
