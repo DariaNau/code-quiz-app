@@ -1,7 +1,6 @@
 
 var currentQuestion = 0;
 var initialsInput = $("#initials-text");
-// var initialsForm = $("#initials-form");
 var scoreOl = $("#scoresList")
 var initialsArray = [];
 var secondsLeft = (questions.length) * 15;
@@ -113,21 +112,20 @@ function timeUp() {
 
 $("#submit-initials").click(function() {
   saveScores();
-
   loadScores();
   highScores();
 });
 
 function saveScores() {
   var scoreName = initialsInput.val();
-  var highScores = scoreName + " : " + scoreNumber;
+  var highScores = scoreName + " : " + secondsLeft;
   initialsArray.push(highScores);
   var stringifyListOfItems = JSON.stringify(initialsArray);
-  localStorage.setItem("listOfItems", stringifyListOfItems);
+  localStorage.setItem("ListOfItems", stringifyListOfItems);
 }
 
 function loadScores() {
-  var savedScores = localStorage.getItem("listOfItems");
+  var savedScores = localStorage.getItem("ListOfItems");
   var allScores = JSON.parse(savedScores);
   if (allScores != null) {
     initialsArray = allScores;
