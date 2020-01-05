@@ -127,12 +127,117 @@ function timeUp() {
     scoreNumber.append(secondsLeft);
 }
 
+
+
+
+
+
+var formInput = $("#initials-text");
+var initialsForm = $("#initials-form");
+var initialsInputs = [];
+var highScores = secondsLeft;
+
+init();
+
+function renderScores() {
+  // Clear element
+  initialsForm.innerHTML = "";
+  
+  // Render a new li for each score
+  for (var i = 0; i < initialsInputs.length; i++) {
+    var initialsInputs = initialsInputs[i];
+
+    var li = document.createElement("li");
+    li.textContent = initInputs;
+    li.attr("data-index", i);
+  }
+}
+
+function init() {
+    // Get stored scores from localStorage
+    var storedScoresString = localStorage.getItem("initialsInputs");
+    // Parsing the JSON string to an object
+    var storedScores = JSON.parse(storedScoresString);
+  
+    // If scores were retrieved from localStorage, update the scores array to it
+    if (storedScores !== null) {
+        initialsInputs = storedScores;
+    }
+    // Render to the DOM
+    renderScores();
+  }
+  
+  function storeScores() {
+    // Stringify and set "scores" key in localStorage to scores array
+    var scoreString = JSON.stringify(initialsInputs);
+    localStorage.setItem("initialsInputs", scoreString);
+  }
+
+  // When form is submitted...
+  initialsForm.addEventListener("submit", function(event) {
+    event.preventDefault();
+  
+    var initialsText = formInput.value.trim();
+  
+    // Return from function early if submitted Text is blank
+    if (initialsText === "") {
+      return;
+    }
+  
+    // Add new Text to score array, clear the input
+    initialsInputs.push(initialsText);
+    formInput.value = "";
+  
+    // Store updated todos in localStorage, re-render the list
+    storeTodos();
+    renderTodos();
+  });
+  
+  // When a element inside of the todoList is clicked...
+  todoList.addEventListener("click", function(event) {
+    var element = event.target;
+  
+    // If that element is a button...
+    if (element.matches("button") === true) {
+      // Get its data-index value and remove the todo element from the list
+      var index = element.parentElement.getAttribute("data-index");
+      todos.splice(index, 1);
+  
+      // Store updated todos in localStorage, re-render the list
+      storeTodos();
+      renderTodos();
+    }
+  });
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // After initials are eneterd in .scoreContainer show .highscoresList when submit button is clicked
 
-$("#submit-initials").click(function() {
-    $(".scoreContainer").hide();
-    $(".highscoresList").show();
-});
+// $("#submit-initials").click(function() {
+//     $(".scoreContainer").append(highscoresList);
+
+// });
 
 
 
