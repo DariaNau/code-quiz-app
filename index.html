@@ -27,7 +27,7 @@
 
 <div class="start">
  <div class="card text-center m-auto w-75">
-    <img src="code.jpg" class="img-responsive" alt="everyone can code!" height="250px">
+    <img src="code.jpg" class="img-responsive" alt="everyone can code!" height="270px">
     <div class="card-body">
       <p class="card-text">Good luck! Answering quickly and correctly results in a higher score. Answering incorrectly results in a time penalty.</p>
        <button type="submit" class="btn btn-secondary">Start Quiz!</button>
@@ -35,15 +35,24 @@
   </div>
 </div>
 
-<!-- Score -->
+<!-- Score & Initials -->
 
-<div class="scoreContainer"><p>All done! Your score is <span>%</span></p>
-  <form>
-      <input type="Enter initials:" class="form-control" type="text">
-      <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+<div class="scoreContainer m-auto w-75">
+<div class="card">
+  <div class="card-header">
+    All done!
+  </div>
+  <div class="card-body">
+     <p class="card-text">Your score is <span id="scoreNumber"></span>.</p>
+      <form id="initials-form" method="POST">
+        <label for="initials-text">Enter initials:</label>
+        <input type="text" placeholder="" name="initials-text" id="initials-text" />
+      </form>
+  <button type="submit" class="btn btn-primary" id="submit-initials">Submit</button>
+  </div>
 </div>
-    
+</div>
+
 <!-- Q&A's -->
 
 <div class="quiz">
@@ -58,6 +67,29 @@
            </blockquote>
         </div>
     </div>
+
+<!-- Highscores List and Local Storage -->
+
+<div id="highscoresList m-auto w-75">
+  <div class="card">
+    <div class="card-header">
+      <form>
+        <p>Highscores: <span id="initilas-count">0</span></p>
+      </form>
+    </div>
+    <div class="card-body">
+       <p class="card-text">   
+        <form>
+         <ul id="initials-list"></ul>
+       <form>
+         <button type="submit" class="btn btn-primary">Go back</button>
+         <button type="submit" class="btn btn-primary">Clear highscores</button>
+    </div>
+  </div>
+</div>   
+
+<!-- 
+<script src="./assets/script.js"></script> -->
 
 <script src="script.js" defer></script>    
 </body>

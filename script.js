@@ -26,41 +26,47 @@ var questions = [
         choices: ["toSource()", "sort()", "splice()", "toString()"],
         answer: "toString()",
     },
-  ];
+];
 
-  var secondsLeft = questions.length * 15;
+var secondsLeft = questions.length * 15;
 
-    $(".start").click(function (e) {
-        e.preventDefault();
-        setTimer();
-        $(".start").hide();
-        $(".quiz").show();
-        showQuestion();
-    });
+// start button on-click sets the timer and shows the content of quiz
 
-    function setTimer() {
-        var xInterval = setInterval(function () {
+$(".start").click(function () {
+    setTimer();
+    $(".start").hide();
+    $(".highscoresList").hide();
+    $(".quiz").show();
+    showQuestion();
+});
+
+// starting the timer as soon as the start button is clicked
+
+function setTimer() {
+    var xInterval = setInterval(function () {
         $("#timer").html(secondsLeft);
         secondsLeft--;
-            if (secondsLeft < 0) {
-                clearInterval(xInterval);
-                TimeUp();
-            }
-        }, 1000);
+        if (secondsLeft < 1) {
+            clearInterval(xInterval);
+            timeUp();
+        }
+    }, 1000);
+}
+
+//clicking on the start quiz button hides the start page and shows the quiz page while firing the showQuestion() function
+
+function showQuestion() {
+    var choices = questions[currentQuestion].choices;
+    var question = questions[currentQuestion].title;
+    $(".quiz h2").text(question);
+    $(".quiz ol").html("");
+    for (var i = 0; i < parseInt(choices.length); i++) {
+        var show = questions[currentQuestion].choices[i];
+        $(".quiz ol").append(`<li class="button-select" id="${i}">${show}</li>`);
     }
 
-    //clicking on the start quiz button hides the start page and shows the quiz page while firing the showQuestion() function
+    // comparing user's guests with correct answer with on-click if/else statement. Feedback is appended and styled.
 
-    function showQuestion() {
-        var choices = questions[currentQuestion].choices;
-        var question = questions[currentQuestion].title;
-        $(".quiz h2").text(question);
-        $(".quiz ol").html("");
-        for (var i = 0; i < parseInt(choices.length); i++) {
-            var show = questions[currentQuestion].choices[i];
-            $(".quiz ol").append(`<li class="button-select" id="${i}">${show}</li>`);
-        }
-        
     $("li").click(function () {
         var guessid = $(this).attr('id');
         var guess = questions[currentQuestion].choices[guessid];
@@ -79,8 +85,6 @@ var questions = [
             });
             currentQuestion++;
             showScore();
-  
-
         } else {
             $(".feedback").fadeIn(200);
             $(".feedback")
@@ -95,26 +99,74 @@ var questions = [
             secondsLeft = secondsLeft - 10;
             currentQuestion++;
             showScore();
-      
+
         }
     });
 }
 
-    function showScore() {
-        if (currentQuestion < questions.length) {
-            showQuestion();
-        } else {
-            $("#timer").remove();
-            $(".quiz").hide();
-            $(".scoreContainer").show();
-        }
-    }
+// after all questions are answered or the time is up running showScore and timeUp functions 
+// while appending remaining time in seconds to the resulted score of the user
 
-    function TimeUp () {
-        $("#timer").text('expired!');
+function showScore() {
+    if (currentQuestion < questions.length) {
+        showQuestion();
+    } else {
+        $("#timer").remove();
         $(".quiz").hide();
         $(".scoreContainer").show();
+        $("#scoreNumber").append(secondsLeft);
+
     }
+}
+
+function timeUp() {
+    $("#timer").text('expired!');
+    $(".quiz").hide();
+    $(".scoreContainer").show();
+    var scoreNumber = $("#scoreNumber")
+    scoreNumber.append(secondsLeft);
+}
+
+// After initials are eneterd in .scoreContainer show .highscoresList when submit button is clicked
+
+$('#submit-initials').click(function() {
+
+    $(".scoreContainer").hide();
+    $(".scoreContainer").show();
+}
+)
+
+// var todoInput = $("#todo-text");
+// var todoForm = document.querySelector("#todo-form");
+// var todoList = document.querySelector("#todo-list");
+// var todoCountSpan = document.querySelector("#todo-count");
+
+// var todos = [];
+
+// init();
+
+// function renderTodos() {
+//   // Clear todoList element and update todoCountSpan
+//   todoList.innerHTML = "";
+//   todoCountSpan.textContent = todos.length;
+
+//   // Render a new li for each todo
+//   for (var i = 0; i < todos.length; i++) {
+//     var todo = todos[i];
+
+//     var li = document.createElement("li");
+//     li.textContent = todo;
+//     li.setAttribute("data-index", i);
+
+
+scoreNumber.append(<li>)
+
+
+//   }
+// }  
+
+
+
 
 
 
