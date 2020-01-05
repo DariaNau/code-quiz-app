@@ -7,7 +7,7 @@ var secondsLeft = (questions.length) * 15;
 
 // on-click .start sets the timer and shows the content of  the quiz
 
-$(".start").click(function() {
+$(".start").click(function () {
   setTimer();
   $("#highscoresList").hide();
   $(".start").hide();
@@ -18,7 +18,7 @@ $(".start").click(function() {
 // starting the timer function
 
 function setTimer() {
-  var xInterval = setInterval(function() {
+  var xInterval = setInterval(function () {
     $("#timer").html(secondsLeft);
     secondsLeft--;
     if (secondsLeft <= 0) {
@@ -40,14 +40,14 @@ function showQuestion() {
     $(".quiz ul").append(`<li class="button-select" id="${i}">${show}</li>`);
   }
 
-// comparing user's guests with correct answer with on-click if/else statement. Feedback is appended and styled.
+  // comparing user's guests with correct answer with on-click if/else statement. Feedback is appended and styled.
 
-  $("li").click(function() {
+  $("li").click(function () {
     var guessid = $(this).attr("id");
     var guess = questions[currentQuestion].choices[guessid];
     var answer = questions[currentQuestion].answer;
 
-// checking if user's guess matches correct answer
+    // checking if user's guess matches correct answer
 
     if (answer === guess) {
       $(".feedback").fadeIn(200);
@@ -76,7 +76,7 @@ function showQuestion() {
         "border-top-style": "solid"
       });
 
-// for each wrong guess timer reduces by 10 seconds
+      // for each wrong guess timer reduces by 10 seconds
 
       secondsLeft = secondsLeft - 10;
       currentQuestion++;
@@ -109,10 +109,11 @@ function timeUp() {
 
 // //Local storage functions start with on-click #submit-initials button
 
-$("#submit-initials").click(function() {
+$("#submit-initials").click(function (e) {
+  e.preventDefault();
   saveScores();
   loadScores();
-  highScores();
+  highScoresPage();
 });
 
 function saveScores() {
@@ -120,6 +121,8 @@ function saveScores() {
   var scoreName = initialsInput.val();
   var highScores = scoreName + " : " + scoreNumber;
   initialsArray.push(highScores);
+  initialsInput.value = "";
+
   var stringifyListOfItems = JSON.stringify(initialsArray);
   localStorage.setItem("ListOfItems", stringifyListOfItems);
 }
@@ -132,16 +135,17 @@ function loadScores() {
   }
 }
 
-function highScores() {
-var scorepage = $("#highscoresList");
-$("#initialsArray").empty();
-$("#initialsArray").append(scorepage.show());
-showScores();
+function highScoresPage() {
+  var scorepage = $("#highscoresList");
+  $("#initialsArray").empty();
+  $("#initialsArray").append(scorepage.show());
+
+  showScores();
+  saveScores();
+  loadScores();
 }
 
 function showScores() {
-
-  scoreOl.innerHTML = "";
 
   for (i = 0; i < initialsArray.length; i++) {
     var newInitials = $("<li>").text(initialsArray[i]);
@@ -152,11 +156,14 @@ function showScores() {
 
 $("#go-back").click(function () {
   window.location.reload();
+  saveScores();
+  loadScores();
 });
 
 $("#clear").click(function (e) {
   e.preventDefault();
-  $("#scoreList").css('display','none'); 
+  $("#scoreList").css('display', 'none');
+  window.localStorage.remove("#scoreList");
 });
 
 
