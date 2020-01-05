@@ -21,7 +21,7 @@ function setTimer() {
   var xInterval = setInterval(function() {
     $("#timer").html(secondsLeft);
     secondsLeft--;
-    if (secondsLeft < 1) {
+    if (secondsLeft <= 0) {
       clearInterval(xInterval);
       timeUp();
     }
@@ -104,8 +104,7 @@ function timeUp() {
   $("#timer").text("expired!");
   $(".quiz").hide();
   $(".scoreContainer").show();
-  var scoreNumber = $("#scoreNumber");
-  scoreNumber.append(secondsLeft);
+  $("#scoreNumber").append(secondsLeft);
 }
 
 // //Local storage functions start with on-click #submit-initials button
@@ -117,8 +116,9 @@ $("#submit-initials").click(function() {
 });
 
 function saveScores() {
+  var scoreNumber = secondsLeft;
   var scoreName = initialsInput.val();
-  var highScores = scoreName + " : " + secondsLeft;
+  var highScores = scoreName + " : " + scoreNumber;
   initialsArray.push(highScores);
   var stringifyListOfItems = JSON.stringify(initialsArray);
   localStorage.setItem("ListOfItems", stringifyListOfItems);
@@ -137,7 +137,6 @@ var scorepage = $("#highscoresList");
 $("#initialsArray").empty();
 $("#initialsArray").append(scorepage.show());
 showScores();
-// listHighScores();
 }
 
 function showScores() {
