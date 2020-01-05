@@ -14,7 +14,7 @@
 
   <div class="bg-info clearfix">
   <div id="highScores" class="top-left">
-    <button type="button" class="btn btn-secondary float-left">View highscores</button>
+    <button id="view-highscores" type="button" class="btn btn-secondary float-left">View highscores</button>
   </div>
   
     <button type="button" class="btn btn-secondary float-right">Time: <span id="timer"></span></button>
@@ -48,6 +48,7 @@
         <label for="initials-text">Enter initials:</label>
         <input type="text" placeholder="" name="initials-text" id="initials-text"/>
       </form>
+      <ul id="high-scores"></ul>
   <button id="submit-initials" type="submit" class="btn btn-primary">Submit</button>
   </div>
 </div>
@@ -70,7 +71,7 @@
 
 <!-- Highscores List and Local Storage -->
 
-<div class="highscoresList">
+<!-- <div class="highscoresList">
   <div class="card m-auto w-75">
     <div class="card-header">
       <form>
@@ -86,11 +87,11 @@
          <button type="submit" class="btn btn-primary">Clear highscores</button>
     </div>
   </div>
-</div>   
+</div>    -->
 
-<!-- 
-<script src="./assets/script.js"></script> -->
 
-<script src="script.js" defer></script>    
+<script src="scripts/questions.js" defer></script>
+<script src="scripts/script.js" defer></script>
+
 </body>
 </html>
