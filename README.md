@@ -13,6 +13,8 @@ https://darianau.github.io/code-quiz-app/
 
 Use this quiz to test your basic code knowledge. See the requirements below.
 
+![Image of the App](code.png)
+
 #### Instructions
 
 Play proceeds as follows:
