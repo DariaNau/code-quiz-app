@@ -113,7 +113,7 @@ function timeUp() {
 
 $("#submit-initials").click(function() {
   saveScores();
-  showScores();
+
   loadScores();
   highScores();
 });
@@ -126,16 +126,7 @@ function saveScores() {
   localStorage.setItem("listOfItems", stringifyListOfItems);
 }
 
-function showScores() {
 
-  scoreOl.innerHTML = "";
-
-  for (i = 0; i < initialsArray.length; i++) {
-    var newInitials = $("<li>").text(initialsArray[i]);
-    var listItems = $("#scoreList");
-    listItems.append(newInitials);
-  }
-}
 
 function loadScores() {
   var savedScores = localStorage.getItem("listOfItems");
@@ -149,7 +140,31 @@ function highScores() {
 var scorepage = $("#highscoresList");
 $("#initialsArray").empty();
 $("#initialsArray").append(scorepage.show());
+showScores();
+// listHighScores();
 }
+
+function showScores() {
+
+  scoreOl.innerHTML = "";
+
+  for (i = 0; i < initialsArray.length; i++) {
+    var newInitials = $("<li>").text(initialsArray[i]);
+    var listItems = $("#scoreList");
+    listItems.append(newInitials);
+  }
+}
+
+// $("#restart").click(function () {
+//   location.reload();
+// });
+
+// $("#clear").on("click", function () {
+//   highScores = [];
+//   storeScores();
+//   renderScores();
+// });
+// renderScores();
 
 
 
