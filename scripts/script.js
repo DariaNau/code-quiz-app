@@ -122,10 +122,10 @@ $("#submit-initials").click(function() {
 });
 
 function saveScores() {
-
   var scoreName = initialsInput.val();
   var highScores = scoreName + " : " + score;
   initialsArray.push(highScores);
+  initialsInput.value = "";
   var stringifyListOfItems = JSON.stringify(initialsArray);
   localStorage.setItem("listOfItems", stringifyListOfItems);
 }
