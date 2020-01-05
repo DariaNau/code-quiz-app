@@ -37,7 +37,7 @@
 
 <!-- Score & Initials -->
 <div class="scoreContainer m-auto w-75">
-  <div class="initialsArray">
+  <div id="initialsArray">
     <div class="card">
       <div class="card-header">
         All done!
@@ -48,8 +48,8 @@
           <label for="initials-text">Enter initials:</label>
           <input type="text" placeholder="" name="initials-text" id="initials-text" />
         </form>
-        <ul id="high-scores"></ul>
-        <button id="submit-initials" type="submit" class="btn btn-secondary">Submit</button>
+        <ol id="scoreList"></ol>
+        <button id="submit-initials" value="submit" class="btn btn-secondary">Submit</button>
       </div>
     </div>
   </div>
@@ -72,7 +72,7 @@
 
 <!-- Highscores List and Local Storage -->
 
-<div class="highscoresList">
+<div id="highscoresList">
   <div class="card m-auto w-75">
     <div class="card-header">
       <div id="highscores"></div>

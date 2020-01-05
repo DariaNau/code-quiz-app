@@ -1,6 +1,8 @@
 
 var currentQuestion = 0;
 var initialsInput = $("#initials-text");
+// var initialsForm = $("#initials-form");
+var scoreOl = $("#scoresList")
 var initialsArray = [];
 var secondsLeft = (questions.length) * 15;
 
@@ -8,7 +10,7 @@ var secondsLeft = (questions.length) * 15;
 
 $(".start").click(function() {
   setTimer();
-  $(".highscoresList").hide();
+  $("#highscoresList").hide();
   $(".start").hide();
   $(".quiz").show();
   showQuestion();
@@ -86,7 +88,6 @@ function showQuestion() {
 
 // after all questions are answered or the time is up running showScore and timeUp functions... ->
 
-
 function showScore() {
   if (currentQuestion < questions.length) {
     showQuestion();
@@ -108,15 +109,13 @@ function timeUp() {
   scoreNumber.append(secondsLeft);
 }
 
-//Local storage functions start with on-click #submit-initials button
+// //Local storage functions start with on-click #submit-initials button
 
 $("#submit-initials").click(function() {
-  initialsInput.innerHTML = "";
   saveScores();
   showScores();
   loadScores();
   highScores();
-  // reload();
 });
 
 function saveScores() {
@@ -125,13 +124,15 @@ function saveScores() {
   initialsArray.push(highScores);
   var stringifyListOfItems = JSON.stringify(initialsArray);
   localStorage.setItem("listOfItems", stringifyListOfItems);
-  initialsInput.innerHTML = "";
 }
 
 function showScores() {
+
+  scoreOl.innerHTML = "";
+
   for (i = 0; i < initialsArray.length; i++) {
     var newInitials = $("<li>").text(initialsArray[i]);
-    var listItems = $("#initials-form");
+    var listItems = $("#scoreList");
     listItems.append(newInitials);
   }
 }
@@ -144,16 +145,31 @@ function loadScores() {
   }
 }
 
-
-
-
 function highScores() {
-
-$(".initialsArray").empty();
-
+var scorepage = $("#highscoresList");
+$("#initialsArray").empty();
+$("#initialsArray").append(scorepage.show());
 }
 
-$("#highscores").append('<button type="button" class="btn btn-info" id= "clear" style= "float:left;">Clear High Scores</button><button type="button" class="btn btn-info" id= "restart" style= "float:right;">Restart</button>');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
