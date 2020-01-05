@@ -34,8 +34,8 @@ var secondsLeft = questions.length * 15;
 
 $(".start").click(function () {
     setTimer();
-    $(".start").hide();
     $(".highscoresList").hide();
+    $(".start").hide();
     $(".quiz").show();
     showQuestion();
 });
@@ -129,41 +129,13 @@ function timeUp() {
 
 // After initials are eneterd in .scoreContainer show .highscoresList when submit button is clicked
 
-$('#submit-initials').click(function() {
-
+$("#submit-initials").click(function() {
     $(".scoreContainer").hide();
-    $(".scoreContainer").show();
-}
-)
-
-// var todoInput = $("#todo-text");
-// var todoForm = document.querySelector("#todo-form");
-// var todoList = document.querySelector("#todo-list");
-// var todoCountSpan = document.querySelector("#todo-count");
-
-// var todos = [];
-
-// init();
-
-// function renderTodos() {
-//   // Clear todoList element and update todoCountSpan
-//   todoList.innerHTML = "";
-//   todoCountSpan.textContent = todos.length;
-
-//   // Render a new li for each todo
-//   for (var i = 0; i < todos.length; i++) {
-//     var todo = todos[i];
-
-//     var li = document.createElement("li");
-//     li.textContent = todo;
-//     li.setAttribute("data-index", i);
+    $(".highscoresList").show();
+});
 
 
-scoreNumber.append(<li>)
 
-
-//   }
-// }  
 
 
 
