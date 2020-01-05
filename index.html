@@ -6,7 +6,7 @@
     <title>Document</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
 
@@ -36,22 +36,21 @@
 </div>
 
 <!-- Score & Initials -->
-
 <div class="scoreContainer m-auto w-75">
-  <div class="card">
-    <div class="card-header">
-      All done!
-    </div>
-    <div class="card-body">
-      <p class="card-text">Your score is <span id="scoreNumber"></span>.</p>
-      <div class="initialsArray">
+  <div class="initialsArray">
+    <div class="card">
+      <div class="card-header">
+        All done!
+      </div>
+      <div class="card-body">
+        <p class="card-text">Your score is <span id="scoreNumber"></span>.</p>
         <form id="initials-form" method="POST">
           <label for="initials-text">Enter initials:</label>
           <input type="text" placeholder="" name="initials-text" id="initials-text" />
         </form>
         <ul id="high-scores"></ul>
+        <button id="submit-initials" type="submit" class="btn btn-primary">Submit</button>
       </div>
-      <button id="submit-initials" type="submit" class="btn btn-primary">Submit</button>
     </div>
   </div>
 </div>
@@ -73,23 +72,24 @@
 
 <!-- Highscores List and Local Storage -->
 
-<!-- <div class="highscoresList">
+<div class="highscoresList">
   <div class="card m-auto w-75">
     <div class="card-header">
-      <form>
-        <p>Highscores: <span id="initilas-count">0</span></p>
+      <div id="highscores"></div>
+      <!-- <form>
+        <p>Highscores<span id="initilas-count"></span></p>
       </form>
     </div>
     <div class="card-body">
        <p class="card-text">   
         <form>
          <ul id="initials-list"></ul>
-       <form>
+       <form> -->
          <button type="submit" class="btn btn-primary">Go back</button>
          <button type="submit" class="btn btn-primary">Clear highscores</button>
     </div>
   </div>
-</div>    -->
+</div>   
 
 
 <script src="scripts/questions.js" defer></script>

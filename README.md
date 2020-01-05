@@ -13,7 +13,7 @@ https://darianau.github.io/code-quiz-app/
 
 Use this quiz to test your basic code knowledge. See the requirements below.
 
-![Everyone can code](/code.png)
+![Everyone can code](/assets/code.jpg)
 
 #### Instructions
 
