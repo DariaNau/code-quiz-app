@@ -154,11 +154,12 @@ function showScores() {
 }
 
 $("#go-back").click(function () {
-  location.reload();
+  window.location.reload();
 });
 
-$("#clear").click(function () {
-  $("#scoreList").empty(); 
+$("#clear").click(function (e) {
+  e.preventDefault();
+  $("#scoreList").css('display','none'); 
 });
 
 
