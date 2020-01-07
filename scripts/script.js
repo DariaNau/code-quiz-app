@@ -1,14 +1,11 @@
 
 var currentQuestion = 0;
 var initialsInput = $("#initials-text");
-// var scoreOl = $("#scoresList")
 var initialsArray = [];
 var secondsLeft = (questions.length) * 15;
-
 var xInterval = null;
 
-
-// on-click .start sets the timer and shows the content of  the quiz
+// on-click .start sets the timer and shows the content of the quiz
 
 $(".start").click(function () {
   setTimer();
@@ -18,7 +15,7 @@ $(".start").click(function () {
   showQuestion();
 });
 
-// starting the timer function
+// ...and starting the timer function
 
 function setTimer() {
   xInterval = setInterval(function () {
@@ -65,7 +62,8 @@ function showQuestion() {
         "border-top-style": "solid"
       });
       currentQuestion++;
-      showScore();
+      showScorePage();
+
     } else {
       $(".feedback").fadeIn(200);
       $(".feedback")
@@ -78,22 +76,19 @@ function showQuestion() {
         "border-top-width": "1px",
         "border-top-style": "solid"
       });
-      secondsLeft = secondsLeft -= 9;
+
+       // for each wrong guess timer and score reduces by 10 seconds
+
+      secondsLeft = secondsLeft -= 10;
       currentQuestion++;
-      showScore();
+      showScorePage();
     }
   });
 }
 
- // for each wrong guess timer and score reduces by 10 seconds
-
-//  function timePenalty() {
-
-//  }
-
 // after all questions are answered or the time is up running showScore and timeUp functions... ->
 
-function showScore() {
+function showScorePage() {
   if (currentQuestion < questions.length) {
     showQuestion();
   } else {
@@ -117,7 +112,7 @@ function timeUp() {
 
 }
 
-// //Local storage functions start with on-click #submit-initials button
+// 3 local storage functions start with on-click #submit-initials button
 
 $("#submit-initials").click(function (e) {
   e.preventDefault();
@@ -155,7 +150,6 @@ function highScoresPage() {
 }
 
 function showScores() {
-
   for (i = 0; i < initialsArray.length; i++) {
     var newInitials = $("<li>").text(initialsArray[i]);
     var listItems = $("#scoreList");
@@ -172,7 +166,6 @@ $("#go-back").click(function () {
 $("#clear").click(function (e) {
   e.preventDefault();
   $("#scoreList").css('display', 'none');
-  window.localStorage.remove("#scoreList");
 });
 
 
