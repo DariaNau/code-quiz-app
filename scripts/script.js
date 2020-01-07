@@ -1,9 +1,10 @@
 
 var currentQuestion = 0;
 var initialsInput = $("#initials-text");
-var scoreOl = $("#scoresList")
+// var scoreOl = $("#scoresList")
 var initialsArray = [];
 var secondsLeft = (questions.length) * 15;
+
 
 // on-click .start sets the timer and shows the content of  the quiz
 
@@ -75,15 +76,18 @@ function showQuestion() {
         "border-top-width": "1px",
         "border-top-style": "solid"
       });
-
-      // for each wrong guess timer reduces by 10 seconds
-
-      secondsLeft = secondsLeft - 10;
+      secondsLeft = secondsLeft -= 9;
       currentQuestion++;
       showScore();
     }
   });
 }
+
+ // for each wrong guess timer and score reduces by 10 seconds
+
+//  function timePenalty() {
+
+//  }
 
 // after all questions are answered or the time is up running showScore and timeUp functions... ->
 
@@ -95,6 +99,7 @@ function showScore() {
     $(".quiz").hide();
     $(".scoreContainer").show();
     $("#scoreNumber").append(secondsLeft);
+    clearInterval(xInterval);
   }
 }
 
@@ -117,9 +122,8 @@ $("#submit-initials").click(function (e) {
 });
 
 function saveScores() {
-  var scoreNumber = secondsLeft;
   var scoreName = initialsInput.val();
-  var highScores = scoreName + " : " + scoreNumber;
+  var highScores = scoreName + " : " + secondsLeft;
   initialsArray.push(highScores);
   initialsInput.value = "";
 
