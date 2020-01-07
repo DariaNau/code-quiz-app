@@ -125,7 +125,8 @@ function saveScores() {
   var scoreName = initialsInput.val();
   var highScores = scoreName + " : " + secondsLeft;
   initialsArray.push(highScores);
-  initialsInput.value = "";
+  console.log(initialsArray);
+  // initialsInput.value = "";
 
   var stringifyListOfItems = JSON.stringify(initialsArray);
   localStorage.setItem("ListOfItems", stringifyListOfItems);
@@ -143,10 +144,7 @@ function highScoresPage() {
   var scorepage = $("#highscoresList");
   $("#initialsArray").empty();
   $("#initialsArray").append(scorepage.show());
-
   showScores();
-  saveScores();
-  loadScores();
 }
 
 function showScores() {
