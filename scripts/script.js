@@ -4,6 +4,7 @@ var initialsInput = $("#initials-text");
 var initialsArray = [];
 var secondsLeft = (questions.length) * 15;
 var xInterval = null;
+var newInitials = null;
 
 // on-click .start sets the timer and shows the content of the quiz
 
@@ -55,7 +56,7 @@ function showQuestion() {
         .html("<h4>Correct!<h4>")
         .fadeOut(900);
       $(".feedback").css({
-        color: "lightgrey",
+        color: "green",
         "text-align": "center",
         "border-top": "lightgrey",
         "border-top-width": "1px",
@@ -70,7 +71,7 @@ function showQuestion() {
         .html("<h4>Wrong!<h4>")
         .fadeOut(900);
       $(".feedback").css({
-        color: "grey",
+        color: "red",
         "text-align": "center",
         "border-top": "grey",
         "border-top-width": "1px",
@@ -97,7 +98,6 @@ function showScorePage() {
     $(".scoreContainer").show();
     $("#scoreNumber").append(secondsLeft);
     clearInterval(xInterval);
-    
   }
 }
 
@@ -109,14 +109,14 @@ function timeUp() {
   $(".scoreContainer").show();
   $("#scoreNumber").append(secondsLeft);
   clearInterval(xInterval);
-
 }
 
-// 3 local storage functions start with on-click #submit-initials button
+// Three local storage functions start with on-click #submit-initials button
 
 $("#submit-initials").click(function (e) {
   e.preventDefault();
   saveScores();
+  showScores();
   loadScores();
   highScoresPage();
 });
@@ -124,17 +124,21 @@ $("#submit-initials").click(function (e) {
 function saveScores() {
   var scoreName = initialsInput.val();
   var highScores = scoreName + " : " + secondsLeft;
+  initialsInput.value = "";
   initialsArray.push(highScores);
-  console.log(initialsArray);
-  // initialsInput.value = "";
+  localStorage.setItem("savedScores", JSON.stringify(initialsArray));
+}
 
-  var stringifyListOfItems = JSON.stringify(initialsArray);
-  localStorage.setItem("ListOfItems", stringifyListOfItems);
+function showScores() {
+  for (i = 0; i < initialsArray.length; i++) {
+    newInitials = $("<li>").text(initialsArray[i]);
+    var listItems = $("#scoreList");
+    listItems.append(newInitials);
+  }
 }
 
 function loadScores() {
-  var savedScores = localStorage.getItem("ListOfItems");
-  var allScores = JSON.parse(savedScores);
+  var allScores = JSON.parse(localStorage.getItem("savedScores")) || [];
   if (allScores != null) {
     initialsArray = allScores;
   }
@@ -142,17 +146,9 @@ function loadScores() {
 
 function highScoresPage() {
   var scorepage = $("#highscoresList");
-  $("#initialsArray").empty();
-  $("#initialsArray").append(scorepage.show());
-  showScores();
-}
-
-function showScores() {
-  for (i = 0; i < initialsArray.length; i++) {
-    var newInitials = $("<li>").text(initialsArray[i]);
-    var listItems = $("#scoreList");
-    listItems.append(newInitials);
-  }
+  scorepage.append(newInitials);
+  // $("#initialsArray").hide();
+  $("#highscoresList").show();
 }
 
 $("#go-back").click(function () {
@@ -165,14 +161,6 @@ $("#clear").click(function (e) {
   e.preventDefault();
   $("#scoreList").css('display', 'none');
 });
-
-
-
-
-
-
-
-
 
 
 
