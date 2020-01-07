@@ -5,6 +5,8 @@ var initialsInput = $("#initials-text");
 var initialsArray = [];
 var secondsLeft = (questions.length) * 15;
 
+var xInterval = null;
+
 
 // on-click .start sets the timer and shows the content of  the quiz
 
@@ -19,7 +21,7 @@ $(".start").click(function () {
 // starting the timer function
 
 function setTimer() {
-  var xInterval = setInterval(function () {
+  xInterval = setInterval(function () {
     $("#timer").html(secondsLeft);
     secondsLeft--;
     if (secondsLeft <= 0) {
@@ -100,6 +102,7 @@ function showScore() {
     $(".scoreContainer").show();
     $("#scoreNumber").append(secondsLeft);
     clearInterval(xInterval);
+    
   }
 }
 
@@ -110,6 +113,8 @@ function timeUp() {
   $(".quiz").hide();
   $(".scoreContainer").show();
   $("#scoreNumber").append(secondsLeft);
+  clearInterval(xInterval);
+
 }
 
 // //Local storage functions start with on-click #submit-initials button
