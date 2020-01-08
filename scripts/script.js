@@ -112,8 +112,6 @@ function timeUp() {
 
 // Three local storage functions start with on-click #submit-initials button
 
-
-
 $("#submit-initials").click(function(e) {
   e.preventDefault();
   saveScores();
@@ -144,10 +142,6 @@ function loadScores() {
   var savedScores = localStorage.getItem("listOfItems");
   var allScores = JSON.parse(savedScores);
   allScores.concat(initialsArray);
-
-
-  console.log(allScores);
-  // console.log(initialsArray);
   if (allScores != null) {
     initialsArray = allScores;
   }

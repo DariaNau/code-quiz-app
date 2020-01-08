@@ -7,8 +7,6 @@ html, body{
     display: none;
 }
 
-
-
 .card {
     margin-top: 10% !important;
     background-color:lightgrey;
@@ -23,11 +21,6 @@ li:hover {
       background: url("https://www.toptal.com/designers/subtlepatterns/patterns/white_wall2.png");
       margin-top: 7% !important;
   }
-/* 
-  #initials{
-    width: 800px;
-    margin: 0 auto;
-    margin-top: 40px;
-  } */
+
 
 
