@@ -120,17 +120,6 @@ $("#submit-initials").click(function(e) {
   highScoresPage();
 });
 
-
-function loadScores() {
-  var savedScores = localStorage.getItem("listOfItems");
-  var allScores = JSON.parse(savedScores);
-  allScores.concat(initialsArray);
-  if (allScores != null) {
-    initialsArray = allScores;
-  }
-  $("#scoreList").append(allScores);
-}
-
 function saveScores() {
   var scoreName = initialsInput.val();
   var highScores = scoreName + " : " + secondsLeft;
@@ -138,12 +127,19 @@ function saveScores() {
   localStorage.setItem("listOfItems", JSON.stringify(initialsArray));
 }
 
+function loadScores() {
+  var savedScores = localStorage.getItem("listOfItems");
+  var allScores = JSON.parse(savedScores);
+  if (allScores != null) {
+    initialsArray = allScores;
+  }
+}
+
 function showScores() {
   for (i = 0; i < initialsArray.length; i++) {
     newInitials = $("<li>").textContent = initialsArray[i];
-    var listItems = $("#initials-form");
-    listItems.append(newInitials);
-    console.log(newInitials);
+    var listItems = $("#scoreList");
+    listItems.append(newInitials);    
   }
 }
 
