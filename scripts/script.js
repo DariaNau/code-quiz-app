@@ -120,6 +120,8 @@ $("#submit-initials").click(function(e) {
   highScoresPage();
 });
 
+// 1 - Save every new input of user's initials and resulted score. Push that info to an array. Stringify array's content to save to local storage.
+
 function saveScores() {
   var scoreName = initialsInput.val();
   var highScores = scoreName + " : " + secondsLeft;
@@ -127,13 +129,20 @@ function saveScores() {
   localStorage.setItem("listOfItems", JSON.stringify(initialsArray));
 }
 
+// 2 - Get stored in local storage info and parse it back into an object format (from string). 
+
 function loadScores() {
   var savedScores = localStorage.getItem("listOfItems");
   var allScores = JSON.parse(savedScores);
+
+  // If score were retrieved from local storage we need to update initialsArray to it
+  
   if (allScores != null) {
     initialsArray = allScores;
   }
 }
+
+//3 - For each new result submitted we create a new line and append that to ordered list on #highScorePage
 
 function showScores() {
   for (i = 0; i < initialsArray.length; i++) {
@@ -142,14 +151,20 @@ function showScores() {
   }
 }
 
+// 4 - After all 3 local storage functions run show the new div
+
 function highScoresPage() {
   $(".highScorePage").show();
   $("#initialsArray").hide();
 }
 
+// Function to see and hide highScorePage div
+
 $("#view-highscores").click(function(){
   $(".highScorePage").toggle();
 });
+
+// functions for each of the "try again" and "clear highscores"
 
 $("#go-back").click(function () {
   window.location.reload();
