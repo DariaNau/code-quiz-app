@@ -200,7 +200,7 @@ function highScoresPage() {
 }
 
 $("#view-highscores").click(function(){
-  $(".highScorePage").show();
+  $(".highScorePage").toggle();
 });
 
 $("#go-back").click(function () {
