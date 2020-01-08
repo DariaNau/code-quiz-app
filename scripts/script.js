@@ -137,9 +137,8 @@ function loadScores() {
 
 function showScores() {
   for (i = 0; i < initialsArray.length; i++) {
-    newInitials = $("<li>").textContent = initialsArray[i];
-    var listItems = $("#scoreList");
-    listItems.append(newInitials);    
+    newInitials = $("<li></li>").append(initialsArray[i]);
+    $("#scoreList").append(newInitials);    
   }
 }
 
