@@ -9,7 +9,8 @@ html, body{
 
 .card {
     margin-top: 10% !important;
-    background-color:lightgrey;
+    margin-bottom: 10% !important;
+    background: url("https://www.toptal.com/designers/subtlepatterns/patterns/white_wall2.png");
 }
 
 li:hover {
@@ -17,10 +18,5 @@ li:hover {
     max-width: fit-content;
     cursor: pointer;
   }
-  .card{
-      background: url("https://www.toptal.com/designers/subtlepatterns/patterns/white_wall2.png");
-      margin-top: 7% !important;
-  }
-
 
 

@@ -199,6 +199,10 @@ function highScoresPage() {
   $("#initialsArray").hide();
 }
 
+$("#view-highscores").click(function(){
+  $(".highScorePage").show();
+});
+
 $("#go-back").click(function () {
   window.location.reload();
 });
