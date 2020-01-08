@@ -122,7 +122,8 @@ $("#submit-initials").click(function(e) {
 
 
 function loadScores() {
-  var allScores = JSON.parse(localStorage.getItem("listOfItems"));
+  var savedScores = localStorage.getItem("listOfItems");
+  var allScores = JSON.parse(savedScores);
   allScores.concat(initialsArray);
   if (allScores != null) {
     initialsArray = allScores;
