@@ -126,6 +126,10 @@ function saveScores() {
   var scoreName = initialsInput.val();
   var highScores = scoreName + " : " + secondsLeft;
   initialsArray.push(highScores);
+
+  // + add sort method to the array to show higher score first
+
+  initialsArray.sort(function(a, b){return b-a}); 
   localStorage.setItem("listOfItems", JSON.stringify(initialsArray));
 }
 
