@@ -10,7 +10,6 @@ var newInitials = null;
 
 $(".start").click(function () {
   setTimer();
-  $("#highscoresList").hide();
   $(".start").hide();
   $(".quiz").show();
   showQuestion();
@@ -202,10 +201,8 @@ function loadScores() {
 // // }
 
 function highScoresPage() {
-  
-  $("#highscoresList").show();
+  $(".highScorePage").show();
   $("#initialsArray").hide();
-
 }
 
 $("#go-back").click(function () {
@@ -215,6 +212,7 @@ $("#go-back").click(function () {
 $("#clear").click(function (e) {
   e.preventDefault();
   $("#scoreList").css('display', 'none');
+  localStorage.clear();
 });
 
 

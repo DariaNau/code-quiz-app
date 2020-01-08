@@ -3,9 +3,11 @@ html, body{
     font-size: larger;
     background: url("https://www.toptal.com/designers/subtlepatterns/patterns/white_wall2.png");
 }
-.quiz, .scoreContainer{
+.quiz, .scoreContainer, .highScorePage{
     display: none;
 }
+
+
 
 .card {
     margin-top: 10% !important;
